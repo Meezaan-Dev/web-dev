@@ -1,6 +1,9 @@
 export interface Website {
+  slug: string;
   title: string;
-  description: string;
+  business: string;
+  need: string;
+  built: string;
   category: string;
   year: string;
   url: string;
@@ -9,18 +12,22 @@ export interface Website {
 
 export const websites: Website[] = [
   {
+    slug: "ak-comms",
     title: "AK Comms",
-    description:
-      "A service-led website helping homes and businesses find practical connectivity, security, and smart technology solutions.",
+    business: "Local connectivity and security business.",
+    need: "They needed somewhere customers could understand their services and get in touch.",
+    built: "So I built a clean, service-led website that makes their work easier to explore.",
     category: "Connectivity & Security",
     year: "2026",
     url: "https://www.akcomms.co.za/",
     preview: "/ak-comms-preview.png",
   },
   {
+    slug: "muks-afrikollective",
     title: "Muks Afrikollective",
-    description:
-      "A culture-forward commerce platform connecting African creativity, sustainable brands, and global audiences.",
+    business: "African creativity, products and brand partnerships.",
+    need: "They needed one online place for products, content and collaborations to live together.",
+    built: "So I built a digital platform that gives the brand room to show up properly.",
     category: "Brand Collective",
     year: "2026",
     url: "https://muksafrikollective.com/",

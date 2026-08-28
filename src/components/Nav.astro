@@ -1,7 +1,17 @@
 ---
 const currentPath = Astro.url.pathname;
+const whatsappHref =
+  "https://wa.me/27658707217?text=Hi%20Meezaan%2C%20I'm%20interested%20in%20getting%20some%20help%20with%20my%20website.";
 
-const navItems = [{ href: "mailto:meezaandavids365@gmail.com", label: "LET'S GET STARTED" }];
+const navItems = [
+  { href: "/#work", label: "Work" },
+  { href: "/#about", label: "About" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: whatsappHref, label: "Let's talk", isCta: true },
+];
+
+const mainNavItems = navItems.filter((item) => !item.isCta);
+const ctaItem = navItems.find((item) => item.isCta);
 
 const socialLinks = [
   {
@@ -23,24 +33,31 @@ const socialLinks = [
 ---
 
 <header
-  class="nav-header fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-sm z-50 border-b border-foreground/10"
+  class="nav-header fixed left-0 right-0 top-0 z-50 bg-[#11131c] text-background"
 >
-  <nav class="container-site py-6">
-    <div class="flex items-center justify-between">
+  <nav class="container-site relative overflow-hidden py-4">
+    <span
+      class="pointer-events-none absolute inset-y-0 left-[14%] hidden w-32 -skew-x-[35deg] bg-background/[0.04] md:block"
+      aria-hidden="true"></span>
+    <span
+      class="pointer-events-none absolute inset-y-0 right-[16%] hidden w-40 -skew-x-[35deg] bg-background/[0.05] md:block"
+      aria-hidden="true"></span>
+
+    <div class="relative flex items-center justify-between">
       <a
         href="/"
-        class="logo font-display text-2xl font-semibold text-foreground hover:text-primary transition-colors"
+        class="logo font-display text-2xl font-semibold text-background transition-colors hover:text-background/80"
       >
         web dev.
       </a>
 
-      <ul class="hidden md:flex items-center gap-8">
+      <ul class="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-10 md:flex">
         {
-          navItems.map((item, index) => (
+          mainNavItems.map((item, index) => (
             <li class="nav-item" style={`animation-delay: ${index * 0.1}s`}>
               <a
                 href={item.href}
-                class={`nav-link text-sm tracking-wide transition-all relative px-4 py-2 bg-foreground text-background font-display font-semibold hover:bg-foreground/90`}
+                class="nav-link relative px-1 py-2 text-sm tracking-wide text-background/70 transition-all hover:text-background"
               >
                 {item.label}
               </a>
@@ -49,9 +66,23 @@ const socialLinks = [
         }
       </ul>
 
+      {
+        ctaItem && (
+          <a
+            href={ctaItem.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-item hidden rounded-full bg-background px-6 py-3 font-display text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-background/90 md:inline-flex"
+            style="animation-delay: 0.3s"
+          >
+            {ctaItem.label}
+          </a>
+        )
+      }
+
       <button
         id="mobile-menu-button"
-        class="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+        class="md:hidden p-2 text-background/80 transition-colors hover:text-background"
         aria-label="Toggle menu"
       >
         <svg
@@ -84,7 +115,7 @@ const socialLinks = [
 
     <div
       id="mobile-menu"
-      class="mobile-menu hidden md:hidden pt-4 pb-4 overflow-hidden border-t border-foreground/10"
+      class="mobile-menu hidden overflow-hidden border-t border-background/10 pb-4 pt-4 md:hidden"
     >
       <ul class="flex flex-col gap-4">
         {
@@ -95,10 +126,14 @@ const socialLinks = [
             >
               <a
                 href={item.href}
+                target={item.isCta ? "_blank" : undefined}
+                rel={item.isCta ? "noopener noreferrer" : undefined}
                 class={`text-sm tracking-wide transition-colors block ${
-                  currentPath === item.href
-                    ? "text-primary font-medium"
-                    : "text-foreground/60 hover:text-foreground"
+                  item.isCta
+                    ? "rounded-full bg-background px-4 py-3 text-center font-display font-semibold text-foreground hover:bg-background/90"
+                    : currentPath === item.href
+                    ? "font-medium text-background"
+                    : "text-background/60 hover:text-background"
                 }`}
               >
                 {item.label}
@@ -116,7 +151,7 @@ const socialLinks = [
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-foreground/60 hover:text-primary transition-colors"
+              class="text-background/60 transition-colors hover:text-background"
               aria-label={link.name}
             >
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

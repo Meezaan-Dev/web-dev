@@ -40,4 +40,71 @@
 	.section-padding {
 		@apply py-24;
 	}
+
+	.animate-section {
+		animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.hero-shot-primary {
+		animation: imageInLeft 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+	}
+
+	.hero-shot-secondary {
+		animation: imageInRight 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+	}
+
+	.hover-lift {
+		transition-duration: 300ms;
+		transition-property: background-color, border-color, color, transform;
+		transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.hover-lift:hover {
+		transform: translateY(-4px);
+	}
+}
+
+@keyframes fadeUp {
+	from {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes imageInLeft {
+	from {
+		opacity: 0;
+		transform: translate3d(-18px, 18px, 0) rotate(calc(var(--hero-rotate, 0deg) - 1deg));
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0) rotate(var(--hero-rotate, 0deg));
+	}
+}
+
+@keyframes imageInRight {
+	from {
+		opacity: 0;
+		transform: translate3d(18px, 18px, 0) rotate(calc(var(--hero-rotate, 0deg) + 1deg));
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0) rotate(var(--hero-rotate, 0deg));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animate-section,
+	.hero-shot-primary,
+	.hero-shot-secondary {
+		animation: none;
+	}
+
+	.hover-lift:hover {
+		transform: none;
+	}
 }
