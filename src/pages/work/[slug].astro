@@ -1,12 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { websites } from "../../data/websites";
 
 export function getStaticPaths() {
-  return websites.map((website) => ({
-    params: { slug: website.slug },
-    props: { website },
-  }));
+  return [];
 }
 
 const { website } = Astro.props;

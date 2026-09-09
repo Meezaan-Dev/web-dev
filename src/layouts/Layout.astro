@@ -1,6 +1,7 @@
 ---
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import ComingSoonOverlay from "../components/ComingSoonOverlay.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -31,6 +32,7 @@ const {
       <slot />
     </main>
     <Footer />
+    <ComingSoonOverlay />
   </body>
 </html>
 
@@ -52,6 +54,10 @@ const {
 
   html {
     scroll-behavior: smooth;
+  }
+
+  body {
+    overflow: hidden;
   }
 
   @media (prefers-reduced-motion: reduce) {
