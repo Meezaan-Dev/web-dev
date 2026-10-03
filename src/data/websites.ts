@@ -33,4 +33,15 @@ export const websites: Website[] = [
     url: "https://muksafrikollective.com/",
     preview: "/muks-afrikollective-preview.png",
   },
+  {
+    slug: "anele-pama",
+    title: "Anele Pama",
+    business: "Cape Town visual artist working in oil and charcoal.",
+    need: "They needed an artist portfolio where visitors could browse the work and make enquiries.",
+    built: "So I built a gallery-led website that presents the artwork clearly and points people toward contact.",
+    category: "Artist Portfolio",
+    year: "2026",
+    url: "https://anelepama.com/",
+    preview: "/anele-pama-preview.png",
+  },
 ];
